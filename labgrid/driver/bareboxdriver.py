@@ -29,7 +29,7 @@ class BareboxDriver(CommandMixin, Driver, CommandProtocol, LinuxBootProtocol):
         interrupt (str): optional, string to interrupt autoboot (use "\x03" for CTRL-C)
         bootstring (regex): optional, regex indicating that the Linux Kernel is booting
         password (str): optional, password to use for access to the shell
-        boot_command (str): optional boot command to boot target
+        boot_command (str): optional, boot command to boot target
         login_timeout (int): optional, timeout for access to the shell
     """
     bindings = {"console": ConsoleProtocol, }
@@ -200,7 +200,7 @@ class BareboxDriver(CommandMixin, Driver, CommandProtocol, LinuxBootProtocol):
         self.console.expect(self.bootstring)
 
     @Driver.check_active
-    def boot(self, name: str):
+    def boot(self, name: str = ""):
         """Boot the default or a specific boot entry
 
         Args:
